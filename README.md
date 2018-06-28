@@ -5,13 +5,13 @@
 [![Coverage Status](https://coveralls.io/repos/tpapp/SymmetricProducts.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/tpapp/SymmetricProducts.jl?branch=master)
 [![codecov.io](http://codecov.io/github/tpapp/SymmetricProducts.jl/coverage.svg?branch=master)](http://codecov.io/github/tpapp/SymmetricProducts.jl?branch=master)
 
-Convenient syntax for removing singleton dimensions from array reductions.
+Wrap a matrix multiplied by its transpose in the narrowest type.
 
 ## Installation
 
 This package is not (yet) registered, and **requires Julia v0.7**. Install with
 ```julia
-pkg> add https://github.com/tpapp/SymmetricProducts.jl.git
+pkg> add https://github.com/tpapp/SymmetricProducts.jl
 ```
 
 ## Usage
