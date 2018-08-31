@@ -1,26 +1,59 @@
 module SymmetricProducts
 
-using LinearAlgebra: Adjoint, Diagonal, Hermitian, Symmetric
+using LinearAlgebra: Diagonal, Hermitian, Symmetric
 
-export symprod
+import Base: show
+import LinearAlgebra: adjoint, *
+
+export SELF
+
+struct Self end
 
 """
-    symprod(A)
+A placeholder for the other argument in a binary operation.
 
-Calculates `A*A'`, wrapping the result in the narrowest type.
+Only a few methods are supported, typically for the adjoint `SELF'`, where the
+result is special.
+
+# Examples
+
+`SELF'*A` is equivalent to `A'*A`, except for producing a symmetric matrix.
 """
-symprod(A::AbstractMatrix{<: Real}) = Symmetric(A*A')
+const SELF = Self()
 
-symprod(A::AbstractMatrix{<: Complex}) = Hermitian(A*A')
+show(io::IO, ::Self) = print(io, "SELF")
 
-symprod(v::AbstractVector{<: Real}) = Symmetric(v*v')
+struct SelfAdjoint end
 
-symprod(v::AbstractVector{<: Complex}) = Hermitian(v*v')
+show(io::IO, ::SelfAdjoint) = print(io, "SELF'")
 
-symprod(D::Diagonal) = Diagonal(abs2.(parent(D)))
+adjoint(::Self) = SelfAdjoint()
 
-symprod(D::Adjoint{<: Diagonal}) = symprod(parent(D))
+
+# matrices (general)
 
-symprod(v::Adjoint{T, Vector{T}}) where T = sum(abs2, v)
+*(A::AbstractMatrix{<: Real}, ::SelfAdjoint) = Symmetric(A*A')
+
+*(::SelfAdjoint, A::AbstractMatrix{<: Real}) = Symmetric(A'*A)
+
+*(A::AbstractMatrix{<: Complex}, ::SelfAdjoint) = Hermitian(A*A')
+
+*(::SelfAdjoint, A::AbstractMatrix{<: Complex}) = Hermitian(A'*A)
+
+
+# matrices (special)
+
+*(D::Diagonal, ::SelfAdjoint) = Diagonal(abs2.(parent(D)))
+
+*(::SelfAdjoint, D::Diagonal) = D*SELF'
+
+
+# vectors
+
+*(v::AbstractVector{<: Real}, ::SelfAdjoint) = Symmetric(v*v')
+
+*(v::AbstractVector{<: Complex}, ::SelfAdjoint) = Hermitian(v*v')
+
+*(::SelfAdjoint, v::AbstractVector) = sum(abs2, v)
 
 end # module
