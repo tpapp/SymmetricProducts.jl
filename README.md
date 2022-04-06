@@ -1,8 +1,14 @@
-# SymmetricProducts
+# SymmetricProducts.jl
 
-![Lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
-[![Build Status](https://travis-ci.org/tpapp/SymmetricProducts.jl.svg?branch=master)](https://travis-ci.org/tpapp/SymmetricProducts.jl)
-[![Coverage Status](https://coveralls.io/repos/tpapp/SymmetricProducts.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/tpapp/SymmetricProducts.jl?branch=master)
+<!-- Tidyverse lifecycle badges, see https://www.tidyverse.org/lifecycle/ Uncomment or delete as needed. -->
+![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)<!--
+![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)
+![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)
+![lifecycle](https://img.shields.io/badge/lifecycle-retired-orange.svg)
+![lifecycle](https://img.shields.io/badge/lifecycle-archived-red.svg)
+![lifecycle](https://img.shields.io/badge/lifecycle-dormant-blue.svg) -->
+[![build](https://github.com/tpapp/SymmetricProducts.jl/workflows/CI/badge.svg)](https://github.com/tpapp/SymmetricProducts.jl/actions?query=workflow%3ACI)
+<!-- Coverage badge on codecov.io, which is used by default. -->
 [![codecov.io](http://codecov.io/github/tpapp/SymmetricProducts.jl/coverage.svg?branch=master)](http://codecov.io/github/tpapp/SymmetricProducts.jl?branch=master)
 
 Wrap a matrix multiplied by its transpose in the narrowest type.
