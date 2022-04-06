@@ -1,3 +1,9 @@
+"""
+Multiply a matrix with its own adjoint, obtaining a symmetric/hermitian result where
+relevant.
+
+The only exported symbol is [`SELF`](@ref), use eg `SELF' * A`.
+"""
 module SymmetricProducts
 
 using LinearAlgebra: Diagonal, Hermitian, Symmetric
@@ -29,7 +35,6 @@ show(io::IO, ::SelfAdjoint) = print(io, "SELF'")
 
 adjoint(::Self) = SelfAdjoint()
 
-
 # matrices (general)
 
 *(A::AbstractMatrix{<: Real}, ::SelfAdjoint) = Symmetric(A*A')
@@ -40,14 +45,12 @@ adjoint(::Self) = SelfAdjoint()
 
 *(::SelfAdjoint, A::AbstractMatrix{<: Complex}) = Hermitian(A'*A)
 
-
 # matrices (special)
 
 *(D::Diagonal, ::SelfAdjoint) = Diagonal(abs2.(parent(D)))
 
 *(::SelfAdjoint, D::Diagonal) = D*SELF'
 
-
 # vectors
 
 *(v::AbstractVector{<: Real}, ::SelfAdjoint) = Symmetric(v*v')
